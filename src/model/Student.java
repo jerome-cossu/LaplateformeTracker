@@ -15,8 +15,24 @@ public class Student {
         this.grade = grade;
     }
 
-    @Override
-    public String toString() {
-        return id + " | " + first_name + " | " + last_name + " | " + age + " | " + grade;
+    public int getId() {
+        return id;
     }
+
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
 }

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.collections.*?> 
+<?import javafx.geometry.Insets?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import fxmltableview.*?>
+
+
+<GridPane alignment="center" hgap="10.0" vgap="10.0" fx:controller="src.controller.StudentController"
+             xmlns:fx="http://javafx.com/fxml">
+     <padding>
+         <Insets bottom="10.0" left="10.0" right ="10.0" top="10.0"/>
+     </padding>
+        
+     <Label text="Student of La Plateforme" GridPane.columnIndex="0" GridPane.rowIndex="0" 
+            style="-fx-font: NORMAL 20 Tahoma;"/>
+ 
+     <TableView fx:id="studentTable" GridPane.columnIndex="0" 
+                    GridPane.rowIndex="1">
+          <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="id" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="firstNameColumn" text="First Name" prefWidth="100">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="firstName" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="lastNameColumn" text="Last Name" prefWidth="100">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="lastName" />
+                  </cellValueFactory>
+              </TableColumn>
+              <TableColumn fx:id="ageColumn" text="Age" prefWidth="200">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="age" />
+                  </cellValueFactory>
+              </TableColumn>
+                <TableColumn fx:id="gradeColumn" text="Grade" prefWidth="200">
+                  <cellValueFactory>
+                      <PropertyValueFactory property="grade" />
+                  </cellValueFactory>
+              </TableColumn>
+          </columns>    
+
+          <sortOrder>
+              <fx:reference source="firstNameColumn"/>
+          </sortOrder> 
+     </TableView>
+         
+     <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" 
+             GridPane.rowIndex="2">
+            <TextField fx:id="fnameField" promptText="First Name"
+                         prefWidth="90"/>
+            <TextField fx:id="lnameField" promptText="Last Name"
+                         prefWidth="90"/>
+            <TextField fx:id="ageField" promptText="Age"
+                         prefWidth="150"/>
+            <TextField fx:id="gradeField" promptText="Grade"
+                        prefWidth = "90"/>
+            <Button text="Add" onAction="#handleAddStudent"/>
+      </HBox>
+
+</GridPane>
