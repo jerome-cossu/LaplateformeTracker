@@ -20,8 +20,8 @@
      <Label text="Student of La Plateforme" GridPane.columnIndex="0" GridPane.rowIndex="0" 
             style="-fx-font: NORMAL 20 Tahoma;"/>
     <HBox spacing="10" maxWidth="300" alignment="CENTER_RIGHT">
-        <TextField fx:id="searchIdField" promptText="Search by ID" maxWidth="150" />
-        <Button text="Search" onAction ="#handleSearchByID" />
+        <TextField fx:id="searchField" promptText="Search by ID" maxWidth="150" />
+        <Button text="Search" onAction ="#handleSearch" />
     </HBox>
 
      <TableView fx:id="studentTable" GridPane.columnIndex="0" 

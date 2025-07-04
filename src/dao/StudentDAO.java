@@ -8,6 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class StudentDAO {
     public static void insertStudent(String first_name, String last_name, int age, int grade) {
@@ -87,7 +90,7 @@ public class StudentDAO {
         }
     }
     public static boolean deleteStudent(Student student) {
-        String sql = "DELETE FROM students WHERE id = ?";
+        String sql = "DELETE FROM student WHERE id = ?";
         try (Connection conn = Database.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
              
@@ -100,4 +103,45 @@ public class StudentDAO {
             return false;
         }
     }
+
+    public ObservableList<Student> searchStudents(String searchTerm) {
+        ObservableList<Student> students = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM student WHERE " +
+                    "CAST(id AS TEXT) LIKE ? OR " +
+                    "LOWER(first_name) LIKE ? OR " +
+                    "LOWER(last_name) LIKE ? OR " +
+                    "CAST(age AS TEXT) LIKE ? OR " +
+                    "CAST(grade AS TEXT) LIKE ?";
+
+        try (Connection conn = Database.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            String likeTerm = "%" + searchTerm.toLowerCase() + "%";
+            System.out.println("Requête LIKE utilisée : " + likeTerm);
+
+            stmt.setString(1, likeTerm);
+            stmt.setString(2, likeTerm);
+            stmt.setString(3, likeTerm);
+            stmt.setString(4, likeTerm);
+            stmt.setString(5, likeTerm);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Student s = new Student(
+                    rs.getInt("id"),
+                    rs.getString("first_name"),
+                    rs.getString("last_name"),
+                    rs.getInt("age"),
+                    rs.getInt("grade")
+                );
+                students.add(s);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return students;
+    }
 }
+

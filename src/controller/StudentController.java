@@ -44,7 +44,9 @@ public class StudentController {
     @FXML
     private Button deleteButton;
     @FXML
-    private TextField searchIdField;
+    private TextField searchField;
+    private final StudentDAO studentDAO = new StudentDAO();
+
 
     @FXML
     public void initialize() {
@@ -156,34 +158,9 @@ public class StudentController {
     }
 
     @FXML
-    private void handleSearchByID() {
-        String input = searchIdField.getText().trim();
-        if (input.isEmpty()) {
-            studentTable.setItems(observableStudents);
-            return;
-        }
-        
-        try {
-            int id = Integer.parseInt(input);
-            Student foundStudent = null;
-            for (Student s : observableStudents) {
-                if (s.getId() == id) {
-                    foundStudent = s;
-                    break;
-                }
-            }
-            
-            if (foundStudent != null) {
-                studentTable.setItems(FXCollections.observableArrayList(foundStudent));
-            } else {
-                studentTable.setItems(FXCollections.observableArrayList());
-                System.out.println("No student match this ID.");
-            }
-            
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid ID.");
-        }
+    private void handleSearch() {
+        String searchTerm = searchField.getText();
+        ObservableList<Student> filtered = studentDAO.searchStudents(searchTerm);
+        studentTable.setItems(filtered);
     }
-
-
 }
