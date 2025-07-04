@@ -2,7 +2,6 @@ package src.dao;
 
 import src.model.Student;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,6 +84,20 @@ public class StudentDAO {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    public static boolean deleteStudent(Student student) {
+        String sql = "DELETE FROM students WHERE id = ?";
+        try (Connection conn = Database.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             
+            stmt.setInt(1, student.getId());
+            int rowsDeleted = stmt.executeUpdate();
+            return rowsDeleted > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

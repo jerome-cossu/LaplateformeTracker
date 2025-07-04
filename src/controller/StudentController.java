@@ -1,14 +1,13 @@
 package src.controller;
 
-import java.lang.annotation.Native;
 import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import src.dao.StudentDAO;
 import src.model.Student;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -42,6 +41,10 @@ public class StudentController {
     private ObservableList<Student> observableStudents;
     @FXML
     private Button modifyButton;
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private TextField searchIdField;
 
     @FXML
     public void initialize() {
@@ -55,6 +58,9 @@ public class StudentController {
         observableStudents = FXCollections.observableArrayList(students);
         studentTable.setItems(observableStudents);
         modifyButton.disableProperty().bind(
+            studentTable.getSelectionModel().selectedItemProperty().isNull()
+        );
+        deleteButton.disableProperty().bind(
             studentTable.getSelectionModel().selectedItemProperty().isNull()
         );
         studentTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -83,12 +89,10 @@ public class StudentController {
             });
             return row;
         });
-
-
     }
 
     @FXML
-    private void handleAddStudent() {
+    private void handleAddStudent(ActionEvent event) {
         String first_name = fnameField.getText();
         String last_name = lnameField.getText();
         String ageString = ageField.getText();
@@ -111,7 +115,7 @@ public class StudentController {
     }
 
     @FXML 
-    private void handleModifyStudent() {
+    private void handleModifyStudent(ActionEvent event) {
         Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
         if (selectedStudent == null) {
             System.out.println("Aucun étudiant sélectionné.");
@@ -133,9 +137,53 @@ public class StudentController {
             selectedStudent.setGrade(newGrade);
 
             StudentDAO.updateStudent(selectedStudent);
-            studentTable.refresh(); // Met à jour visuellement
+            studentTable.refresh();
         } catch (NumberFormatException e) {
             System.out.println("Âge ou note invalide.");
         }
     }
+
+    @FXML
+    private void handleDeleteStudent(ActionEvent event) {
+        Student selectedStudent = studentTable.getSelectionModel().getSelectedItem();
+        if (selectedStudent == null) {
+            System.out.println("Aucun étudiant sélectionné.");
+            return;
+        }
+        StudentDAO.deleteStudent(selectedStudent);
+        observableStudents.remove(selectedStudent);
+        studentTable.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    private void handleSearchByID() {
+        String input = searchIdField.getText().trim();
+        if (input.isEmpty()) {
+            studentTable.setItems(observableStudents);
+            return;
+        }
+        
+        try {
+            int id = Integer.parseInt(input);
+            Student foundStudent = null;
+            for (Student s : observableStudents) {
+                if (s.getId() == id) {
+                    foundStudent = s;
+                    break;
+                }
+            }
+            
+            if (foundStudent != null) {
+                studentTable.setItems(FXCollections.observableArrayList(foundStudent));
+            } else {
+                studentTable.setItems(FXCollections.observableArrayList());
+                System.out.println("No student match this ID.");
+            }
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid ID.");
+        }
+    }
+
+
 }
