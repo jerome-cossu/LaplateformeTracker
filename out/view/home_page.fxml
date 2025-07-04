@@ -46,11 +46,7 @@
                       <PropertyValueFactory property="grade" />
                   </cellValueFactory>
               </TableColumn>
-          </columns>    
-
-          <sortOrder>
-              <fx:reference source="firstNameColumn"/>
-          </sortOrder> 
+          </columns>
      </TableView>
          
      <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" 
@@ -64,6 +60,7 @@
             <TextField fx:id="gradeField" promptText="Grade"
                         prefWidth = "90"/>
             <Button text="Add" onAction="#handleAddStudent"/>
+            <Button fx:id="modifyButton" text="Modify" onAction="#handleModifyStudent"/>
       </HBox>
 
 </GridPane>

@@ -72,4 +72,19 @@ public class StudentDAO {
         }
         return null;
     }
+
+    public static void updateStudent(Student student) {
+        String sql = "UPDATE student SET first_name = ?, last_name = ?, age = ?, grade = ? WHERE id = ?";
+        try (Connection conn = Database.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, student.getFirstName());
+            pstmt.setString(2, student.getLastName());
+            pstmt.setInt(3, student.getAge());
+            pstmt.setInt(4, student.getGrade());
+            pstmt.setInt(5, student.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

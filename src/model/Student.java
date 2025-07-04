@@ -23,16 +23,32 @@ public class Student {
         return first_name;
     }
 
+    public void setFirstName(String firstName) {
+        this.first_name = firstName;
+    }
+
     public String getLastName() {
         return last_name;
+    }
+
+    public void setLastName(String lastName) {
+        this.last_name = lastName;
     }
 
     public int getAge() {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public int getGrade() {
         return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
     }
 
 }
