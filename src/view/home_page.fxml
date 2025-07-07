@@ -8,17 +8,15 @@
 <?import javafx.scene.layout.*?>
 <?import fxmltableview.*?>
 
-
 <GridPane alignment="center" hgap="10.0" vgap="10.0" fx:controller="src.controller.StudentController"
-             xmlns:fx="http://javafx.com/fxml">
+          xmlns:fx="http://javafx.com/fxml"> 
      <padding>
          <Insets bottom="10.0" left="10.0" right ="10.0" top="10.0"/>
      </padding>
-        
 
     <VBox spacing="10" alignment="TOP_RIGHT">
      <Label text="Student of La Plateforme" GridPane.columnIndex="0" GridPane.rowIndex="0" 
-            style="-fx-font: NORMAL 20 Tahoma;"/>
+            style="-fx-font: NORMAL 20 Tahoma; -fx-text-fill: rgb(255, 255, 255);"/>
     <HBox spacing="10" maxWidth="300" alignment="CENTER_RIGHT">
         <TextField fx:id="searchField" promptText="Search on the database" maxWidth="150" />
         <Button text="Search" onAction ="#handleSearch" />

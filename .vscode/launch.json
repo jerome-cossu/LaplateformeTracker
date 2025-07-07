@@ -3,10 +3,38 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Launch JavaFX App",
+      "name": "Main",
       "request": "launch",
       "mainClass": "src.main.Main",
-      "vmArgs": "--module-path C:/javafx-sdk-24.0.1/lib --add-modules javafx.controls,javafx.fxml"
+      "projectName": "LaplateformeTracker_db6b422e"
+    },
+    {
+      "type": "java",
+      "name": "Login",
+      "request": "launch",
+      "mainClass": "Login",
+      "projectName": "LaplateformeTracker_db6b422e"
+    },
+    {
+      "type": "java",
+      "name": "LoginWindow",
+      "request": "launch",
+      "mainClass": "LoginWindow",
+      "projectName": "LaplateformeTracker_db6b422e"
+    },
+    {
+      "type": "java",
+      "name": "LoginPage",
+      "request": "launch",
+      "mainClass": "LoginPage",
+      "projectName": "LaplateformeTracker_db6b422e"
+    },
+    {
+      "type": "java",
+      "name": "Lancer JavaFX",
+      "request": "launch",
+      "mainClass": "Main",
+      "vmArgs": "--module-path \"C:\\\\Program Files\\\\javafx-sdk-24.0.1\\\\lib\" --add-modules javafx.controls"
     }
   ]
 }
