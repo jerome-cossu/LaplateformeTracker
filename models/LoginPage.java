@@ -28,7 +28,7 @@ public class LoginPage {
         card.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);");
 
         Label titleLabel = new Label("Welcome");
-        titleLabel.setFont(Font.font("Arial", 20));
+        titleLabel.setFont(Font.font("Arial", 25));
         titleLabel.setTextFill(Color.web("#333"));
 
         // Username
