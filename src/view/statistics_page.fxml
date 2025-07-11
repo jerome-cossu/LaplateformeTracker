@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="20" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="src.controller.StatisticsController"
+      alignment="CENTER" padding="20">
+      
+    <Label text="Student Statistics" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <Label fx:id="averageAgeLabel" text="Average Age: " />
+    <Label fx:id="averageGradeLabel" text="Average Grade: " />
+</VBox>

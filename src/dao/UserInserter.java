@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * A simple CLI tool to insert a user into the database via user input.
+ */
 public class UserInserter {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/tracker";
     private static final String DB_USER = "postgres";
@@ -14,15 +17,18 @@ public class UserInserter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Entrez votre nom d'utilisateur : ");
+        System.out.print("Enter your username: ");
         String username = scanner.nextLine();
 
-        System.out.print("Entrez votre mot de passe : ");
+        System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
         insertUser(username, password);
     }
 
+    /**
+     * Inserts a new user into the "users" table.
+     */
     private static void insertUser(String username, String password) {
         String sql = "INSERT INTO users (username, password) VALUES (?, ?)";
 
@@ -34,11 +40,11 @@ public class UserInserter {
 
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("Utilisateur ajouté avec succès !");
+                System.out.println("User successfully added!");
             }
 
         } catch (SQLException e) {
-            System.err.println("Erreur lors de l'ajout : " + e.getMessage());
+            System.err.println("Error while adding user: " + e.getMessage());
         }
     }
 }

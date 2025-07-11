@@ -1,16 +1,19 @@
 package src.model;
 
+/**
+ * Represents a student entity with basic information.
+ */
 public class Student {
     private int id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private int age;
     private int grade;
 
-    public Student(int id, String first_name, String last_name, int age, int grade) {
+    public Student(int id, String firstName, String lastName, int age, int grade) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.grade = grade;
     }
@@ -20,19 +23,19 @@ public class Student {
     }
 
     public String getFirstName() {
-        return first_name;
+        return firstName;
     }
 
     public void setFirstName(String firstName) {
-        this.first_name = firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
-        return last_name;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.last_name = lastName;
+        this.lastName = lastName;
     }
 
     public int getAge() {

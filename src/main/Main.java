@@ -7,11 +7,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Entry point for the application.
+ */
 public class Main extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // Load the login page FXML
         Parent root = FXMLLoader.load(new File("src/view/login_page.fxml").toURI().toURL());
-        primaryStage.setTitle("Connexion - La Plateforme Tracker");
+
+        // Set up the stage
+        primaryStage.setTitle("Login - La Plateforme Tracker");
         primaryStage.setScene(new Scene(root, 400, 300));
         primaryStage.show();
     }
